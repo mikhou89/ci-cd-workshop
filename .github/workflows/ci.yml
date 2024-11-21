@@ -1,0 +1,45 @@
+name: CI Pipeline
+
+# The event that triggers the workflow
+on:
+  push:
+    branches:
+      - master  # This will trigger the workflow only when pushing to the master branch
+
+jobs:
+  # Define the job to run the tests and build
+  build:
+    runs-on: ubuntu-latest  # The environment to run the job on
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3  # This action checks out your repository's code
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Sets up Node.js for the pipeline
+        with:
+          node-version: '16'  # Use Node.js version 16
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install  # This installs all dependencies defined in package.json
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: |
+          echo "No tests yet!"  # You can replace this with real test scripts like `npm test`
+
+      # Step 5: Build the application
+      - name: Build application
+        run: npm run build  # This runs the build script defined in package.json
+
+      # Optional: If you want to deploy to a service (e.g., Heroku), you can add it here
+      # Example:
+      # - name: Deploy to Heroku
+      #   uses: akhileshns/heroku-deploy@v4.1.8
+      #   with:
+      #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+      #     heroku_app_name: ci-cd-workshop-app
+      #     heroku_email: your-email@example.com
