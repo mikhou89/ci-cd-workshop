@@ -29,7 +29,9 @@ jobs:
       # Step 4: Run tests
       - name: Run tests
         run: |
-          echo "No tests yet!"  # You can replace this with real test scripts like `npm test`
+          - name: Run tests
+              run: npm test
+
 
       # Step 5: Build the application
       - name: Build application
